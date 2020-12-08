@@ -1,0 +1,11 @@
+$user = Read-Host "Please enter your username"
+$pass = Read-Host "Please enter your password" -AsSecureString
+$credential = New-Object System.Management.Automation.PSCredential -ArgumentList $user, $pass
+$sessionOption = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck
+$007 = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "https://mail.XXXXXXXX.co.in/powershell" -Credential $Cred -Authentication Basic  -SessionOption @sessionOption -AllowRedirection
+Import-PSSession $007 -Verbose 
+Write-Host "_____________○○○○○○○○○______________MailboxDatabase -Status______________○○○○○○○○○_________________________" -foregroundColor Cyan 
+Get-MailboxDatabase -Status | select Name,mounted,mountedonserver, LastFullBackup,DatabaseSize |ft -auto 
+Write-Host "_____________○○○○○○○○○______________MailboxDatabaseCopyStatu_____________○○○○○○○○○_________________________" -foregroundColor Cyan 
+Get-MailboxDatabaseCopyStatus * | ft -auto 
+Write-Host "             ♥                      Hello ☺ Mr. R0b0t ☺, Here is Exchange Console for you.        ♥         " -foregroundColor Cyan
