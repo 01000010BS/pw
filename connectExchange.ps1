@@ -3,7 +3,7 @@
     $domain = 'demo\user'
 	$pass = ConvertTo-SecureString -String 'password' -AsPlainText -Force
 	$user = New-Object System.Management.Automation.pscredential -ArgumentList $domain, $pass
-	$007 = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://dc-cas-02.bsphcl.co.in/powershell/ -Authentication Kerberos -Credential $User
+	$007 = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://cas-server/powershell/ -Authentication Kerberos -Credential $User
 	Import-PSSession $007 -Verbose 
     Write-Host "_____________○○○○○○○○○______________MailboxDatabase -Status______________○○○○○○○○○_________________________" -foregroundColor Cyan 
     Get-MailboxDatabase -Status | select Name,mounted,mountedonserver, LastFullBackup,DatabaseSize |ft -auto 
